@@ -1,5 +1,5 @@
-const CACHE_NAME = "mt-plan-v2";
-const ASSETS = ["./", "./index.html", "./app.js", "./app-data.js", "./manifest.json", "./icon.svg"];
+const CACHE_NAME = "mt-plan-v3";
+const ASSETS = ["./", "./index.html", "./app.js", "./app-data.js", "./manifest.json", "./icon.svg", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", e => {
   self.skipWaiting();
