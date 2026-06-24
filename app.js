@@ -67,10 +67,18 @@ function render() {
     app.innerHTML = `
       <div class="card">
         <h2>Welcome</h2>
-        <p>Set the Monday you started (or are starting) Week 1 of your plan:</p>
+        <button id="startTodayBtn">Start today</button>
+        <p style="text-align:center;margin:10px 0;color:#94a3b8;">or pick a different date</p>
         <input type="date" id="startDateInput" />
-        <button id="setStartBtn">Start my plan</button>
+        <button id="setStartBtn">Start on this date</button>
       </div>`;
+    document.getElementById("startTodayBtn").onclick = () => {
+      const t = new Date();
+      t.setHours(0, 0, 0, 0);
+      state.startDate = fmtDate(t);
+      saveState(state);
+      render();
+    };
     document.getElementById("setStartBtn").onclick = () => {
       const val = document.getElementById("startDateInput").value;
       if (!val) return;
