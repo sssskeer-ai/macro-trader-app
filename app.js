@@ -17,11 +17,19 @@ if (!state.completed) state.completed = {}; // key "YYYY-MM-DD" -> true
 if (!state.notes) state.notes = {}; // key "YYYY-MM-DD" -> string
 
 function fmtDate(d) {
-  return d.toISOString().slice(0, 10);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function parseLocalDate(dateStr) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, m - 1, d);
 }
 
 function getWeekAndDay(today, startDate) {
-  const start = new Date(startDate);
+  const start = parseLocalDate(startDate);
   const diffDays = Math.floor((today - start) / 86400000);
   if (diffDays < 0) return null;
   const weekNum = Math.floor(diffDays / 7) + 1;
